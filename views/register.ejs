@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register – ChinMay BloGs</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="dm-fixed">
+  <button id="dmToggle" class="dm-toggle" aria-label="Toggle dark mode" title="Toggle dark mode"></button>
+</div>
+
+<div class="split-container">
+
+  <!-- LEFT -->
+  <div class="left-panel">
+    <div class="auth-card">
+
+      <h1 class="logo-text">ChinMay BloGs</h1>
+      <p class="subtitle">Create an account to start publishing.</p>
+
+      <% if (error) { %>
+        <div class="auth-error">
+          <i class="bi bi-exclamation-circle"></i> <%= error %>
+        </div>
+      <% } %>
+
+      <form action="/register" method="POST" class="auth-form">
+
+        <div class="form-group">
+          <label>Username</label>
+          <input type="text" name="username" placeholder="John Doe" required />
+        </div>
+
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" name="email" placeholder="you@example.com" required />
+        </div>
+
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" name="password" placeholder="••••••••" minlength="6" required />
+        </div>
+
+        <button type="submit" class="auth-btn">
+          Create Account <i class="bi bi-arrow-right"></i>
+        </button>
+
+      </form>
+
+      <p class="auth-switch">Already have an account? <a href="/login">Login here</a></p>
+
+    </div>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="right-panel">
+    <video class="bg-video" autoplay muted loop>
+      <source src="/videos/2340-157269921 (1).mp4" type="video/mp4"/>
+    </video>
+  </div>
+
+</div>
+
+
+<script src="/js/darkmode.js"></script>
+</body>
+</html>

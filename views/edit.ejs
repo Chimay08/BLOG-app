@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Edit Post | ChinMay BloGs</title>
+
+  <link rel="stylesheet" href="/css/style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+
+<body class="page-post">
+
+<div class="post-view-container">
+  <div class="post-view-card">
+
+    <div class="post-view-header">
+      <a href="/post/<%= post.id %>" class="back-btn">
+        <i class="bi bi-arrow-left"></i> Back
+      </a>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <button id="dmToggle" class="dm-toggle" aria-label="Toggle dark mode" title="Toggle dark mode"></button>
+        <span class="post-view-meta">Editing post</span>
+      </div>
+    </div>
+
+    <h1 class="post-view-title">Edit Post</h1>
+
+    <form action="/post/<%= post.id %>/edit" method="POST">
+      <label style="display:block;font-weight:700;margin-bottom:6px;">Title</label>
+      <input type="text" name="title" value="<%= post.title %>" required
+        style="width:100%;padding:10px 14px;border:1px solid #ddd;border-radius:10px;font-size:15px;margin-bottom:16px;box-sizing:border-box;" />
+
+      <label style="display:block;font-weight:700;margin-bottom:6px;">Author</label>
+      <input type="text" name="author" value="<%= post.author %>" required
+        style="width:100%;padding:10px 14px;border:1px solid #ddd;border-radius:10px;font-size:15px;margin-bottom:16px;box-sizing:border-box;" />
+
+      <label style="display:block;font-weight:700;margin-bottom:6px;">Content</label>
+      <textarea name="content" rows="14" required
+        style="width:100%;padding:10px 14px;border:1px solid #ddd;border-radius:10px;font-size:15px;resize:vertical;box-sizing:border-box;"><%= post.content %></textarea>
+
+      <div style="margin-top:16px;">
+        <button type="submit" class="share-linkedin-btn" style="background:#111;padding:10px 24px;font-size:14px;">
+          <i class="bi bi-check-lg"></i> Save Changes
+        </button>
+      </div>
+    </form>
+
+  </div>
+</div>
+
+
+<script src="/js/darkmode.js"></script>
+</body>
+</html>

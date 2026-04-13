@@ -1,0 +1,1032 @@
+/* =====================================
+   ROOT + GLOBAL RESET
+===================================== */
+
+:root{
+  --primary:#111;
+  --light:#ffffff;
+  --border:#eee;
+  --text:#2D2D2D;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: Arial, sans-serif;
+}
+
+
+
+/* =====================================
+   SPLIT LAYOUT
+===================================== */
+
+.split-container{
+  display:flex;
+  height:100vh;
+  width:100%;
+  overflow:hidden;
+}
+
+
+
+/* =====================================
+   LEFT PANEL (BLOG)
+===================================== */
+
+.left-panel{
+  width:50%;
+  background:var(--light);
+  color:var(--text);
+  padding:40px;
+  overflow-y:auto;
+  border-right:2px solid var(--border);
+}
+
+.left-content{
+  max-width:520px;
+  margin:0 auto;
+}
+
+.logo-text{
+  font-size:38px;
+  font-weight:900;
+}
+
+.subtitle{
+  margin-top:8px;
+  color:#444;
+}
+
+.blog-box{
+  margin-top:30px;
+}
+
+.blog-title{
+  font-size:22px;
+  font-weight:800;
+  margin-bottom:15px;
+}
+
+.empty-msg{
+  color:#777;
+  background:#f6f6f6;
+  padding:12px;
+  border-radius:15px;
+}
+
+
+
+/* =====================================
+   POST CARDS
+===================================== */
+
+.post-card{
+  position:relative;
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:16px;
+  margin-bottom:14px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.06);
+  transition:.25s;
+}
+
+.post-card:hover{
+  transform:translateY(-5px);
+}
+
+.delete-post-form{
+  position:absolute;
+  top:10px;
+  right:10px;
+}
+
+.delete-post-btn{
+  width:34px;
+  height:34px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:none;
+  border-radius:50%;
+  background:#f3f3f3;
+  color:#111;
+  cursor:pointer;
+  transition:background .2s ease, transform .2s ease;
+}
+
+.delete-post-btn:hover{
+  background:#111;
+  color:#fff;
+  transform:scale(1.05);
+}
+
+.delete-post-btn i{
+  font-size:14px;
+  line-height:1;
+}
+
+
+
+/* =====================================
+   BUTTON SYSTEM
+===================================== */
+
+.publish-btn,
+.add-post-btn,
+.read-btn{
+  display:inline-block;
+  margin-top:10px;
+  padding:10px 14px;
+  background:var(--primary);
+  color:white;
+  border-radius:10px;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:700;
+  border:none;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.publish-btn:hover,
+.add-post-btn:hover,
+.read-btn:hover{
+  transform:scale(1.05);
+}
+
+
+
+/* =====================================
+   RIGHT PANEL (VIDEO)
+===================================== */
+
+.right-panel{
+  width:60%;
+  position:relative;
+  background:#000;
+}
+
+.bg-video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+
+
+/* =====================================
+   MODALS
+===================================== */
+
+.post-modal,
+.lottie-modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+
+.post-modal.show,
+.lottie-modal.show{
+  display:flex;
+}
+
+.post-modal-box,
+.lottie-box{
+  width:90%;
+  max-width:720px;
+  background:white;
+  padding:30px;
+  border-radius:16px;
+}
+
+.modal-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:18px;
+}
+
+.modal-header h2{
+  margin:0;
+}
+
+.post-modal-box form{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.post-modal-box label{
+  display:block;
+  font-size:15px;
+  font-weight:700;
+  color:#111;
+}
+
+.post-modal-box input,
+.post-modal-box textarea{
+  width:100%;
+  margin-top:8px;
+  padding:12px 14px;
+  border:1px solid #d8d8d8;
+  border-radius:12px;
+  font-size:15px;
+  color:var(--text);
+  background:#fff;
+}
+
+.post-modal-box input{
+  height:48px;
+}
+
+.post-modal-box textarea{
+  min-height:240px;
+  resize:vertical;
+}
+
+.close-btn{
+  border:none;
+  background:transparent;
+  font-size:18px;
+  cursor:pointer;
+  width:36px;
+  height:36px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  transition:background .2s ease, transform .2s ease;
+}
+
+.close-btn:hover{
+  background:#f3f3f3;
+  transform:scale(1.05);
+}
+
+.close-btn i{
+  font-size:16px;
+  line-height:1;
+}
+
+
+
+/* =====================================
+   AI FLOATING BUTTON
+===================================== */
+
+.ai-float-btn{
+  position:fixed;
+  bottom:30px;
+  right:30px;
+
+  width:68px;
+  height:68px;
+  border-radius:50%;
+
+  border:none;
+  cursor:pointer;
+
+  background:linear-gradient(135deg,#1a1a1a,#000);
+  color:white;
+
+  font-size:26px;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  box-shadow:0 10px 30px rgba(0,0,0,.35);
+
+  transition:all .25s ease;
+}
+
+.ai-float-btn:hover{
+  transform:scale(1.1);
+}
+
+.ai-float-btn:active{
+  transform:scale(.92);
+}
+
+
+
+/* =====================================
+   AI POPUP (SMOOTH ZOOM)
+===================================== */
+
+.ai-popup{
+  position:fixed;
+  bottom:110px;
+  right:30px;
+  width:340px;
+  background:white;
+  border-radius:14px;
+  box-shadow:0 8px 30px rgba(0,0,0,.25);
+
+  display:flex;
+  flex-direction:column;
+
+  /* animation */
+  opacity:0;
+  transform:scale(.7);
+  pointer-events:none;
+
+  transition:.25s ease;
+
+  backdrop-filter: blur(10px);
+}
+
+/* ACTIVE STATE */
+.ai-popup.active{
+  opacity:1;
+  transform:scale(1);
+  pointer-events:auto;
+}
+
+
+
+/* =====================================
+   AI CONTENT
+===================================== */
+
+.ai-header{
+  background:var(--primary);
+  color:white;
+  padding:12px;
+  font-weight:bold;
+  display:flex;
+  justify-content:space-between;
+}
+
+.ai-body{
+  padding:12px;
+}
+
+#promptInput{
+  width:100%;
+  height:90px;
+  padding:8px;
+  margin-bottom:10px;
+}
+
+#generateBtn{
+  width:100%;
+  padding:10px;
+  border:none;
+  background:var(--primary);
+  color:white;
+  cursor:pointer;
+  border-radius:8px;
+}
+
+#aiResult{
+  margin-top:10px;
+  max-height:200px;
+  overflow-y:auto;
+  font-size:14px;
+}
+
+
+/* =====================================
+   ENTRANCE ANIMATIONS (HOME PAGE)
+===================================== */
+
+@keyframes fadeSlideUp {
+  from { opacity:0; transform:translateY(22px); }
+  to   { opacity:1; transform:translateY(0);    }
+}
+
+@keyframes fadeIn {
+  from { opacity:0; }
+  to   { opacity:1; }
+}
+
+.page-home .left-panel {
+  animation: fadeSlideUp .55s cubic-bezier(.22,.68,0,1.2) both;
+}
+
+.page-home .right-panel {
+  animation: fadeIn .8s ease both;
+}
+
+.page-home .user-bar {
+  animation: fadeSlideUp .5s .08s cubic-bezier(.22,.68,0,1.2) both;
+}
+
+.page-home .logo-text {
+  animation: fadeSlideUp .5s .14s cubic-bezier(.22,.68,0,1.2) both;
+}
+
+.page-home .subtitle {
+  animation: fadeSlideUp .5s .2s cubic-bezier(.22,.68,0,1.2) both;
+}
+
+.page-home .add-post-btn {
+  animation: fadeSlideUp .5s .26s cubic-bezier(.22,.68,0,1.2) both;
+}
+
+.page-home .blog-box {
+  animation: fadeSlideUp .5s .34s cubic-bezier(.22,.68,0,1.2) both;
+}
+
+/* post cards staggered via JS */
+.page-home .post-card {
+  opacity:0;
+  animation: fadeSlideUp .4s cubic-bezier(.22,.68,0,1.2) both;
+}
+
+
+
+/* =====================================
+   USER BAR
+===================================== */
+
+.user-bar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:24px;
+  font-size:14px;
+  color:#555;
+}
+
+.user-bar span{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  font-weight:600;
+  color:#111;
+}
+
+.logout-btn{
+  display:flex;
+  align-items:center;
+  gap:5px;
+  padding:6px 14px;
+  background:#f3f3f3;
+  border-radius:20px;
+  color:#111;
+  text-decoration:none;
+  font-weight:600;
+  font-size:13px;
+  transition:.2s;
+}
+
+.logout-btn:hover{
+  background:#111;
+  color:#fff;
+}
+
+
+
+/* =====================================
+   AUTH PAGES
+===================================== */
+
+.auth-card{
+  max-width:420px;
+  margin:0 auto;
+  padding-top:60px;
+}
+
+.auth-form{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  margin-top:28px;
+}
+
+.form-group{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.form-group label{
+  font-size:14px;
+  font-weight:700;
+  color:#111;
+}
+
+.form-group input{
+  height:48px;
+  padding:12px 14px;
+  border:1px solid #d8d8d8;
+  border-radius:12px;
+  font-size:15px;
+  color:var(--text);
+  background:#fff;
+  transition:border .2s;
+}
+
+.form-group input:focus{
+  outline:none;
+  border-color:#111;
+}
+
+.auth-btn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  margin-top:6px;
+  padding:14px;
+  background:var(--primary);
+  color:white;
+  border:none;
+  border-radius:12px;
+  font-size:15px;
+  font-weight:700;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.auth-btn:hover{
+  transform:scale(1.02);
+  background:#222;
+}
+
+.auth-error{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  background:#fff0f0;
+  color:#c0392b;
+  border:1px solid #fcc;
+  border-radius:10px;
+  padding:10px 14px;
+  margin-top:16px;
+  font-size:14px;
+}
+
+.auth-divider{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin:18px 0 14px;
+  color:#aaa;
+  font-size:13px;
+}
+
+.auth-divider::before,
+.auth-divider::after{
+  content:"";
+  flex:1;
+  height:1px;
+  background:#e0e0e0;
+}
+
+.google-btn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  width:100%;
+  padding:12px;
+  border:1.5px solid #ddd;
+  border-radius:10px;
+  background:#fff;
+  color:#333;
+  font-size:15px;
+  font-weight:600;
+  cursor:pointer;
+  text-decoration:none;
+  transition:.2s;
+}
+
+.google-btn:hover{
+  background:#f5f5f5;
+  border-color:#bbb;
+  transform:scale(1.01);
+}
+
+.auth-switch{
+  margin-top:22px;
+  font-size:14px;
+  color:#555;
+  text-align:center;
+}
+
+.auth-switch a{
+  color:#111;
+  font-weight:700;
+  text-decoration:underline;
+}
+
+
+
+/* =====================================
+   POST TITLE LINK
+===================================== */
+
+.post-title-link{
+  text-decoration:none;
+  color:inherit;
+  display:block;
+}
+
+.post-title-link:hover h3{
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+
+
+/* =====================================
+   POST VIEW PAGE
+===================================== */
+
+.page-post{
+  background:#f4f4f4;
+  min-height:100vh;
+  padding:40px 20px;
+}
+
+.post-view-container{
+  max-width:780px;
+  margin:0 auto;
+}
+
+.post-view-card{
+  background:#fff;
+  border-radius:16px;
+  padding:40px;
+  box-shadow:0 8px 30px rgba(0,0,0,0.08);
+}
+
+.post-view-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:28px;
+}
+
+.back-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  text-decoration:none;
+  color:#111;
+  font-size:14px;
+  font-weight:600;
+  padding:6px 14px;
+  background:#f3f3f3;
+  border-radius:20px;
+  transition:.2s;
+}
+
+.back-btn:hover{
+  background:#111;
+  color:#fff;
+}
+
+.post-view-meta{
+  font-size:13px;
+  color:#999;
+}
+
+.post-view-title{
+  font-size:30px;
+  font-weight:900;
+  color:#111;
+  line-height:1.3;
+  margin-bottom:8px;
+}
+
+.post-view-author{
+  font-size:14px;
+  color:#888;
+  margin-bottom:28px;
+}
+
+.post-view-content{
+  font-size:15px;
+  line-height:1.8;
+  color:#333;
+  border-top:1px solid #eee;
+  padding-top:24px;
+}
+
+.post-view-content h3{
+  margin:20px 0 8px;
+  font-size:18px;
+  color:#111;
+}
+
+.post-view-actions{
+  margin-top:32px;
+  padding-top:20px;
+  border-top:1px solid #eee;
+}
+
+
+/* =====================================
+   IMAGE BUTTON (next to Publish)
+===================================== */
+
+.img-upload-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:44px;
+  border:none;
+  border-radius:10px;
+  background:#f3f3f3;
+  color:#333;
+  cursor:pointer;
+  transition:.2s;
+  flex-shrink:0;
+}
+
+.img-upload-btn:hover{
+  background:#111;
+  color:#fff;
+}
+
+
+/* =====================================
+   WORD SUGGESTION DROPDOWN
+===================================== */
+
+.suggestion-box{
+  position:fixed;
+  z-index:9999;
+  margin:0;
+  padding:4px 0;
+  list-style:none;
+  background:#fff;
+  border:1px solid #e0e0e0;
+  border-radius:10px;
+  box-shadow:0 8px 24px rgba(0,0,0,0.12);
+  max-height:260px;
+  overflow-y:auto;
+  display:none;
+}
+
+.suggestion-box.visible{
+  display:block;
+}
+
+.suggestion-box li{
+  padding:8px 14px;
+  font-size:14px;
+  color:#333;
+  cursor:pointer;
+  transition:background .12s;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.suggestion-box li:hover,
+.suggestion-box li.active{
+  background:#f0f4ff;
+  color:#111;
+}
+
+/* Bold the typed prefix inside each suggestion */
+.suggestion-box .sg-match{
+  font-weight:700;
+  color:#111;
+}
+
+
+/* =====================================
+   SHARE TO LINKEDIN BUTTON
+===================================== */
+
+.share-linkedin-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  margin-top:10px;
+  padding:6px 12px;
+  background:#0a66c2;
+  color:#fff;
+  border:none;
+  border-radius:8px;
+  font-size:12px;
+  font-weight:600;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.share-linkedin-btn:hover{
+  background:#004182;
+  transform:scale(1.04);
+}
+
+
+
+/* =====================================
+   MOBILE
+===================================== */
+
+@media(max-width:900px){
+
+  .split-container{
+    flex-direction:column;
+  }
+
+  .left-panel,
+  .right-panel{
+    width:100%;
+    height:50vh;
+  }
+
+}
+
+
+
+/* =====================================
+   DARK MODE TOGGLE BUTTON
+===================================== */
+
+.dm-toggle{
+  width:38px;
+  height:38px;
+  border:none;
+  border-radius:50%;
+  background:transparent;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  color:inherit;
+  flex-shrink:0;
+  transition:background 300ms ease, box-shadow 300ms ease, transform 150ms ease;
+}
+
+.dm-toggle:hover{
+  background:rgba(128,128,128,.15);
+  /* warm glow in light mode */
+  box-shadow:0 0 10px 3px rgba(255,200,50,.32);
+}
+
+body.dark .dm-toggle:hover{
+  /* cool glow in dark mode */
+  box-shadow:0 0 10px 3px rgba(130,160,255,.4);
+}
+
+.dm-toggle:active{
+  transform:scale(.88);
+}
+
+/* Icon wrapper — recreated on every toggle to re-fire the animation */
+.dm-icon-anim{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  animation:dmIconPop 420ms cubic-bezier(.34,1.56,.64,1) both;
+}
+
+@keyframes dmIconPop{
+  0%  { opacity:0; transform:scale(.35) rotate(-90deg); }
+  60% { opacity:1; transform:scale(1.22) rotate(10deg); }
+  100%{ opacity:1; transform:scale(1)   rotate(0deg);   }
+}
+
+/* Fixed toggle for auth pages (login / register) */
+.dm-fixed{
+  position:fixed;
+  top:16px;
+  right:16px;
+  z-index:9999;
+}
+
+
+/* =====================================
+   DARK MODE OVERRIDES
+===================================== */
+
+/* Smooth bg transition on every page */
+body{
+  transition:background-color 400ms ease, color 400ms ease;
+}
+
+/* ── Base ── */
+body.dark{
+  background:#0f0f0f;
+  color:#f0f0f0;
+}
+
+/* ── Split layout ── */
+body.dark .left-panel{
+  background:#141414;
+  color:#f0f0f0;
+  border-right-color:#2a2a2a;
+}
+
+/* ── Typography ── */
+body.dark .logo-text{ color:#f0f0f0; }
+body.dark .subtitle{ color:#aaa; }
+
+/* ── User bar ── */
+body.dark .user-bar{ color:#aaa; }
+body.dark .user-bar span{ color:#f0f0f0; }
+body.dark .logout-btn{ background:#262626; color:#f0f0f0; }
+body.dark .logout-btn:hover{ background:#f0f0f0; color:#111; }
+
+/* ── Post cards ── */
+body.dark .post-card{
+  background:#1e1e1e;
+  border-color:#2a2a2a;
+  box-shadow:0 6px 18px rgba(0,0,0,.45);
+}
+body.dark .empty-msg{ background:#1e1e1e; color:#aaa; }
+body.dark .delete-post-btn{ background:#2a2a2a; color:#f0f0f0; }
+body.dark .delete-post-btn:hover{ background:#f0f0f0; color:#111; }
+
+/* ── Post view page ── */
+body.dark.page-post,
+body.dark .page-post{ background:#0f0f0f; }
+body.dark .post-view-card{
+  background:#1a1a1a;
+  box-shadow:0 8px 30px rgba(0,0,0,.55);
+}
+body.dark .post-view-title{ color:#f0f0f0; }
+body.dark .post-view-author{ color:#aaa; }
+body.dark .post-view-meta{ color:#666; }
+body.dark .post-view-content{
+  color:#ddd;
+  border-top-color:#2a2a2a;
+}
+body.dark .post-view-content h1,
+body.dark .post-view-content h2,
+body.dark .post-view-content h3{ color:#f0f0f0; }
+body.dark .post-view-actions{ border-top-color:#2a2a2a; }
+body.dark .back-btn{ background:#262626; color:#f0f0f0; }
+body.dark .back-btn:hover{ background:#f0f0f0; color:#111; }
+
+/* ── Create / Edit modal ── */
+body.dark .post-modal-box{
+  background:#1e1e1e;
+  color:#f0f0f0;
+}
+body.dark .post-modal-box label{ color:#f0f0f0; }
+body.dark .post-modal-box input,
+body.dark .post-modal-box textarea{
+  background:#2a2a2a;
+  color:#f0f0f0;
+  border-color:#444;
+}
+body.dark .close-btn{ color:#f0f0f0; }
+body.dark .close-btn:hover{ background:#2a2a2a; }
+
+/* ── Edit page standalone inputs ── */
+body.dark input[type="text"],
+body.dark textarea{
+  background:#2a2a2a;
+  color:#f0f0f0;
+  border-color:#444;
+}
+
+/* ── AI popup ── */
+body.dark .ai-popup{
+  background:#1e1e1e;
+  box-shadow:0 8px 30px rgba(0,0,0,.65);
+}
+body.dark #promptInput{
+  background:#2a2a2a;
+  color:#f0f0f0;
+  border-color:#444;
+}
+body.dark #aiResult{ color:#ddd; }
+body.dark .img-upload-btn{ background:#2a2a2a; color:#ddd; }
+
+/* ── Word suggestion dropdown ── */
+body.dark .suggestion-box{
+  background:#1e1e1e;
+  border-color:#333;
+  box-shadow:0 8px 24px rgba(0,0,0,.55);
+}
+body.dark .suggestion-box li{ color:#ddd; }
+body.dark .suggestion-box li:hover,
+body.dark .suggestion-box li.active{ background:#2a2a2a; color:#f0f0f0; }
+body.dark .suggestion-box .sg-match{ color:#f0f0f0; }
+
+/* ── Auth pages ── */
+body.dark .form-group label{ color:#f0f0f0; }
+body.dark .form-group input{
+  background:#2a2a2a;
+  color:#f0f0f0;
+  border-color:#444;
+}
+body.dark .form-group input:focus{ border-color:#888; }
+body.dark .google-btn{
+  background:#1e1e1e;
+  border-color:#444;
+  color:#f0f0f0;
+}
+body.dark .google-btn:hover{ background:#2a2a2a; }
+body.dark .auth-divider{ color:#666; }
+body.dark .auth-divider::before,
+body.dark .auth-divider::after{ background:#2a2a2a; }
+body.dark .auth-switch{ color:#aaa; }
+body.dark .auth-switch a{ color:#f0f0f0; }

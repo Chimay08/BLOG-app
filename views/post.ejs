@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title><%= post.title %> | ChinMay BloGs</title>
+
+  <link rel="stylesheet" href="/css/style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+
+<body class="page-post">
+
+<div class="post-view-container">
+  <div class="post-view-card">
+
+    <div class="post-view-header">
+      <a href="/" class="back-btn">
+        <i class="bi bi-arrow-left"></i> Back
+      </a>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <button id="dmToggle" class="dm-toggle" aria-label="Toggle dark mode" title="Toggle dark mode"></button>
+        <span class="post-view-meta"><%= post.createdAt %></span>
+      </div>
+    </div>
+
+    <h1 class="post-view-title"><%= post.title %></h1>
+    <p class="post-view-author">By <%= post.author %></p>
+
+    <div class="post-view-content"><%- renderedContent %></div>
+
+    <div class="post-view-actions">
+      <a class="back-btn" href="/post/<%= post.id %>/edit">
+        <i class="bi bi-pencil"></i> Edit
+      </a>
+      <!--
+        NOTE: LinkedIn does NOT allow direct auto-posting from frontend code.
+        Their API requires server-side OAuth and posting permissions.
+        The only frontend-safe option is sharing a URL via their share dialog.
+        We pass the post's unique URL so LinkedIn can scrape its title/preview.
+      -->
+      <button class="share-linkedin-btn" id="shareLinkedIn">
+        <i class="bi bi-linkedin"></i> Share to LinkedIn
+      </button>
+    </div>
+
+  </div>
+</div>
+
+
+<script src="/js/darkmode.js"></script>
+<script>
+  // Share this post's unique URL on LinkedIn (opens in new tab)
+  document.getElementById("shareLinkedIn").addEventListener("click", () => {
+    const postUrl = encodeURIComponent(window.location.href);
+    window.open(
+      `https://www.linkedin.com/sharing/share-offsite/?url=${postUrl}`,
+      "_blank"
+    );
+  });
+</script>
+
+</body>
+</html>

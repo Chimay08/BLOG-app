@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blog marvel</title>
+
+  <link rel="stylesheet" href="/css/style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+
+<body class="page-home">
+
+<div class="split-container">
+
+  <!-- LEFT -->
+  <div class="left-panel">
+    <div class="left-content">
+      <div class="user-bar">
+        <span><i class="bi bi-person-circle"></i> <%= username %></span>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <button id="dmToggle" class="dm-toggle" aria-label="Toggle dark mode" title="Toggle dark mode"></button>
+          <a href="/logout" class="logout-btn">Logout <i class="bi bi-box-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <h1 class="logo-text">ChinMay BloGs</h1>
+      <p class="subtitle">Write your thoughts. Publish your ideas.</p>
+
+      <button class="add-post-btn" id="addPostBtn">
+        Add Post
+      </button>
+
+      <div class="blog-box">
+        <h2 class="blog-title">Latest Posts</h2>
+
+        <% if (!posts || posts.length === 0) { %>
+          <p class="empty-msg">No posts yet.</p>
+        <% } else { %>
+          <% posts.forEach((post) => { %>
+            <div class="post-card">
+              <form action="/posts/<%= post.id %>/delete" method="POST" class="delete-post-form">
+                <button type="submit" class="delete-post-btn" aria-label="Delete post">
+                  <i class="bi bi-x-lg"></i>
+                </button>
+              </form>
+              <a href="/post/<%= post.id %>" class="post-title-link">
+                <h3><%= post.title %></h3>
+              </a>
+              <p><%= post.content.substring(0,120) %>...</p>
+              <button class="share-linkedin-btn" data-id="<%= post.id %>">
+                <i class="bi bi-linkedin"></i> Share to LinkedIn
+              </button>
+            </div>
+          <% }) %>
+        <% } %>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- RIGHT -->
+  <div class="right-panel">
+    <video class="bg-video" autoplay muted loop>
+      <source src="/videos/2340-157269921 (1).mp4" type="video/mp4"/>
+    </video>
+  </div>
+
+</div>
+
+
+<!-- BLOG MODAL -->
+<div class="post-modal" id="postModal">
+  <div class="post-modal-box">
+    <div class="modal-header">
+      <h2>Create Blog</h2>
+      <button type="button" class="close-btn" id="closeModal" aria-label="Close modal">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+
+    <form action="/new" method="POST">
+
+      <label>Title</label>
+      <input type="text" name="title" required />
+
+      <label>Author</label>
+      <input type="text" name="author" required />
+
+      <label>Content</label>
+      <textarea id="contentInput" name="content" rows="10" required></textarea>
+
+      <div style="display:flex;align-items:stretch;gap:10px;margin-top:10px;">
+        <button class="publish-btn" style="margin-top:0;">
+          Publish 🚀
+        </button>
+        <input type="file" id="imageUpload" accept="image/*" style="display:none;" />
+        <button type="button" class="img-upload-btn" id="imageUploadBtn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-images" viewBox="0 0 16 16">
+            <path d="M4.502 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
+            <path d="M14.002 13a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2V5A2 2 0 0 1 2 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-1.998 2M14 2H4a1 1 0 0 0-1 1h9.002a2 2 0 0 1 2 2v7A1 1 0 0 0 15 11V3a1 1 0 0 0-1-1M2.002 4a1 1 0 0 0-1 1v8l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094l1.777 1.947V5a1 1 0 0 0-1-1z"/>
+          </svg>
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+
+<button class="ai-float-btn" id="aiBtn">
+  <i class="bi bi-pen"></i>
+</button>
+
+
+<div class="ai-popup" id="aiPopup">
+
+  <div class="ai-header">
+    AI Blog Generator
+    <span id="closeAi">✖</span>
+  </div>
+
+  <div class="ai-body">
+
+    <textarea id="promptInput" placeholder="Write a blog about..."></textarea>
+
+    <button id="generateBtn">
+      Generate Blog
+    </button>
+
+    <div id="aiResult"></div>
+
+  </div>
+
+</div>
+
+
+<script src="/js/darkmode.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/wordSuggestions.js"></script>
+
+</body>
+</html>
